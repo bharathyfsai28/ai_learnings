@@ -33,5 +33,12 @@
 
 ### Reference
 
-    llm.js - for defining the model and invoke
-    prompt-template.js - for defining the prompts and chaining to the model
+    llm.js 
+        - for defining the model and invoke
+    prompt-template.js 
+        - for defining the prompts and chaining to the model
+        - define the model
+        - define the prompt template
+        - construct the chain
+        - invoke the chain with prompt inputs
+        - log the response

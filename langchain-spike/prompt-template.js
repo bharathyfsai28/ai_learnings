@@ -38,7 +38,9 @@ const chain = prompt.pipe(model);
 
 // Invoke the chain, passing the prompt value
 
-const response = await chain.invoke({input :'Chicken'});
+const response = await chain.invoke({
+    input :'Chicken'
+});
 
 
 // log the response
