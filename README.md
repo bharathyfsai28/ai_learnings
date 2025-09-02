@@ -35,10 +35,22 @@
 
     llm.js 
         - for defining the model and invoke
+
     prompt-template.js 
         - for defining the prompts and chaining to the model
         - define the model
         - define the prompt template (fromTemplate that takes a string input, fromMessage that takes an array of SystemMessage and Human Message)
         - construct the chain
+        - invoke the chain with prompt inputs
+        - log the response
+
+    output-parsers.js
+        - for defining the prompts and chaining to the model
+        - define the model
+        - define the prompt template (fromTemplate that takes a string input, fromMessage that takes an array of SystemMessage and Human Message)
+        - define the parser
+            - StringOutputParser
+            - CommaSeparatedListParser
+        - construct the chain with parse
         - invoke the chain with prompt inputs
         - log the response
