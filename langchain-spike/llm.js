@@ -13,6 +13,7 @@ console.log(OPENAI_API_KEY);
 
 const model = new ChatOpenAI({
 
+    model : "gpt-3.5-turbo",
     openAIApiKey : OPENAI_API_KEY
     
 });

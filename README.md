@@ -19,3 +19,13 @@
 ## Create the Key
 
     https://platform.openai.com/api-keys
+
+
+
+### Docs
+
+    model can be accessed using
+        - invoke
+        - batch
+        - stream
+        
