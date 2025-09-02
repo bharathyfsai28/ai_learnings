@@ -1,6 +1,6 @@
 import { ChatOpenAI } from "@langchain/openai";
 import {ChatPromptTemplate} from '@langchain/core/prompts'
-import { StringOutputParser } from '@langchain/core/output_parsers'
+import { StringOutputParser,CommaSeparatedListOutputParser } from '@langchain/core/output_parsers'
 
 import * as dotenv from 'dotenv'
 
@@ -56,8 +56,31 @@ async function callStringOutputParser() {
 
 }
 
-const response =  callStringOutputParser();
+async function callListOutputParser(){
+
+    const prompt = ChatPromptTemplate.fromTemplate(`
+        Provide 5 Synonyms for the following word {word}`
+    );
+
+    // construct the ListOutputParser
+
+    const listParser = new CommaSeparatedListOutputParser();
+
+    // construct the chain with Parser
+
+    const chain = prompt.pipe(model).pipe(listParser);
+
+    // Invoke the chain with prompt value
+
+    return await chain.invoke({
+        input : 'Excellent'
+    })
+}
+
+const response = await callStringOutputParser();
+const listResponse = await callListOutputParser();
 
 // log the response
 
 console.log(response);
+console.log(listResponse);

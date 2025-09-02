@@ -49,8 +49,8 @@
         - define the model
         - define the prompt template (fromTemplate that takes a string input, fromMessage that takes an array of SystemMessage and Human Message)
         - define the parser
-            - StringOutputParser
-            - CommaSeparatedListParser
+            -   StringOutputParser
+            -   CommaSeparatedListOutputParser
         - construct the chain with parse
         - invoke the chain with prompt inputs
         - log the response

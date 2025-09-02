@@ -27,7 +27,7 @@ const model = new ChatOpenAI({
 
 // Define the Prompt Template
 
-const prompt = ChatPromptTemplate.fromTemplate('You are a comedian. Tell me a joke based on following word {input}');
+const prompt = ChatPromptTemplate.fromTemplate('You are a tourist guide. Tell me some historical information about place : {input}');
 
 // Alternate way of calling the promptTemplate with from Messages
 
@@ -36,7 +36,7 @@ const prompt2 = ChatPromptTemplate.fromMessages([
     ["human", "{input}"],
 ])
 
-console.log(await prompt.format({input : "chicken"}));
+console.log(await prompt.format({input : "Melbourne"}));
 
 
 // Construct the Chain
@@ -46,7 +46,7 @@ const chain = prompt.pipe(model);
 // Invoke the chain, passing the prompt value
 
 const response = await chain.invoke({
-    input :'Chicken'
+    input :'Melbourne'
 });
 
 
