@@ -18,4 +18,10 @@ const model = new ChatOpenAI({
 });
 
 const response = await model.invoke('What is LLM?');
+
+// likewise, we can use batch for sending multiple queries to the model 
+
+const response2 = await model.batch(['Hello', 'What is LLM?'])
+
 console.log(response);
+console.log(response2);
