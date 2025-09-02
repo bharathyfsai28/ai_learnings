@@ -32,7 +32,7 @@ const prompt = ChatPromptTemplate.fromTemplate('You are a tourist guide. Tell me
 // Alternate way of calling the promptTemplate with from Messages
 
 const prompt2 = ChatPromptTemplate.fromMessages([
-    ["system","Generate a joke based on a word provided by the user"],
+    ["system","Generate historical data as per the instruction provided by the user"],
     ["human", "{input}"],
 ])
 

@@ -4,12 +4,13 @@ import * as dotenv from 'dotenv'
 
 // GET THE KEY FROM ENV file
 
-dotenv.config();
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+
+
 console.log(OPENAI_API_KEY);
 
 
-// Define the model
+// Define the modelTo i
 
 const model = new ChatOpenAI({
 

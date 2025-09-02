@@ -6,8 +6,7 @@
 ## Install Dependencies
 
     npm i langchain @langchain/openai
-    npm i dotenv
-    npm i nodemon --save-dev
+Deo    npm i nodemon --save-dev
 
 
 ## Modify Package.json
@@ -51,6 +50,9 @@
         - define the parser
             -   StringOutputParser
             -   CommaSeparatedListOutputParser
+            -   StructuredOutputParser
+                -   fromNamesAndDescriptions
+                -   fromZodSchema
         - construct the chain with parse
         - invoke the chain with prompt inputs
         - log the response
