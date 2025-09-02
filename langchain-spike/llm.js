@@ -14,7 +14,10 @@ console.log(OPENAI_API_KEY);
 const model = new ChatOpenAI({
 
     model : "gpt-3.5-turbo",
-    openAIApiKey : OPENAI_API_KEY
+    openAIApiKey : OPENAI_API_KEY,
+    temperature : 0.6,
+    maxTokens : 100,
+    verbose : false
     
 });
 
