@@ -38,7 +38,7 @@
     prompt-template.js 
         - for defining the prompts and chaining to the model
         - define the model
-        - define the prompt template
+        - define the prompt template (fromTemplate that takes a string input, fromMessage that takes an array of SystemMessage and Human Message)
         - construct the chain
         - invoke the chain with prompt inputs
         - log the response

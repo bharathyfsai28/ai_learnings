@@ -29,6 +29,13 @@ const model = new ChatOpenAI({
 
 const prompt = ChatPromptTemplate.fromTemplate('You are a comedian. Tell me a joke based on following word {input}');
 
+// Alternate way of calling the promptTemplate with from Messages
+
+const prompt2 = ChatPromptTemplate.fromMessages([
+    ["system","Generate a joke based on a word provided by the user"],
+    ["human", "{input}"],
+])
+
 console.log(await prompt.format({input : "chicken"}));
 
 
