@@ -30,3 +30,17 @@ const model = new ChatOpenAI({
 const prompt = ChatPromptTemplate.fromTemplate('You are a comedian. Tell me a joke based on following word {input}');
 
 console.log(await prompt.format({input : "chicken"}));
+
+
+// Construct the Chain
+
+const chain = prompt.pipe(model);
+
+// Invoke the chain, passing the prompt value
+
+const response = await chain.invoke({input :'Chicken'});
+
+
+// log the response
+
+console.log(response);
