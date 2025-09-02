@@ -28,4 +28,10 @@
         - invoke
         - batch
         - stream
-        
+
+
+
+### Reference
+
+    llm.js - for defining the model and invoke
+    prompt-template.js - for defining the prompts and chaining to the model
