@@ -24,34 +24,39 @@ const model = new ChatOpenAI({
     
 });
 
+async function callStringOutputParser() {
 
-// Define the Prompt Template
+    // Define the Prompt Template
 
-const prompt = ChatPromptTemplate.fromTemplate('You are a comedian. Tell me a joke based on following word {input}');
+    const prompt = ChatPromptTemplate.fromTemplate('You are a comedian. Tell me a joke based on following word {input}');
 
-// Alternate way of calling the promptTemplate with from Messages
+    // Alternate way of calling the promptTemplate with from Messages
 
-const prompt2 = ChatPromptTemplate.fromMessages([
-    ["system","Generate a joke based on a word provided by the user"],
-    ["human", "{input}"],
-])
+    const prompt2 = ChatPromptTemplate.fromMessages([
+        ["system","Generate a joke based on a word provided by the user"],
+        ["human", "{input}"],
+    ])
 
-// construct the parser
-const parser = new StringOutputParser();
+    // construct the parser
+    const parser = new StringOutputParser();
 
-console.log(await prompt.format({input : "chicken"}));
+    console.log(await prompt.format({input : "chicken"}));
 
 
-// Construct the Chain with Parser
+    // Construct the Chain with Parser
 
-const chain = prompt.pipe(model).parser(parser);
+    const chain = prompt.pipe(model).pipe(parser);
 
-// Invoke the chain, passing the prompt value
+    // Invoke the chain, passing the prompt value
 
-const response = await chain.invoke({
-    input :'Chicken'
-});
+    return await chain.invoke({
+        input :'Chicken'
+    });
 
+
+}
+
+const response =  callStringOutputParser();
 
 // log the response
 
