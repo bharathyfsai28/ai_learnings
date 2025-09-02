@@ -2,6 +2,7 @@ import { ChatOpenAI } from "@langchain/openai";
 import {ChatPromptTemplate} from '@langchain/core/prompts'
 import { StringOutputParser,CommaSeparatedListOutputParser } from '@langchain/core/output_parsers'
 import { StructuredOutputParser } from "@langchain/core/output_parsers";
+import { string, z } from 'zod'
 
 import * as dotenv from 'dotenv'
 
@@ -93,6 +94,8 @@ async function callStructuredOutputParser(){
         name : "The Name of the person",
         age :"Age of the person"
     })
+
+    
     
     const chain = prompt.pipe(model).pipe(outputParser);
 
@@ -101,13 +104,39 @@ async function callStructuredOutputParser(){
         format_instructions : outputParser.getFormatInstructions(),
     });
 
+}
 
+async function callZodOutputParser(){
+
+    // define the prompt
+
+    const prompt = ChatPromptTemplate.fromTemplate(`
+         Extract information from the following phrase.
+         Formatting Instructions : {format_instructions}
+         Phrase : {phrase}
+        `);
+    
+    
+    const outputParser = StructuredOutputParser.fromZodSchema(
+        z.object({
+            recipe : z.string().describe("name of recipe"),
+            ingredients: z.array(z.string()).describe("ingredients"),
+        })
+    )
+    
+    const chain = prompt.pipe(model).pipe(outputParser);
+
+    return await chain.invoke({
+        phrase : "The ingredients for making Madurai Parotta is Maida flour, salt, butter, oil and ghee",
+        format_instructions : outputParser.getFormatInstructions(),
+    });
 
 }
 
 const response = await callStringOutputParser();
 const listResponse = await callListOutputParser();
 const structuredResponse = await callStructuredOutputParser();
+const zodResponse = await callZodOutputParser();
 
 // log the response
 

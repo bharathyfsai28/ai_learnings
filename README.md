@@ -6,7 +6,9 @@
 ## Install Dependencies
 
     npm i langchain @langchain/openai
-Deo    npm i nodemon --save-dev
+    npm i dotenv
+    npm i nodemon --save-dev
+    npm i zod ( need to install this for using StructuredOutputParser to have custom nested json structure response)
 
 
 ## Modify Package.json
