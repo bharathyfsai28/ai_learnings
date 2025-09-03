@@ -3,9 +3,12 @@ import { ChatPromptTemplate } from '@langchain/core/prompts'
 
 import { Document } from '@langchain/core/documents'
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents'
+import { createRetrievalChain } from 'langchain/chains/retrieval'
 
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/CheerioWebBasedLoader'
-import {RecursiveCharacterTextSplitter} from 'langchain/text_splitter'
+import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
+import { OpenAIEmbeddings } from '@langchain/openai'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 
 import * as dotenv from 'dotenv'
 dotenv.config();
@@ -62,11 +65,25 @@ const splitter = new RecursiveCharacterTextSplitter({
 
 const split_docs = splitter.splitDocuments(docs);
 
+const embeddings = new OpenAIEmbeddings();
+
+const vectorStore = await MemoryVectorStore.fromDocuments(split_docs, embeddings);
+
+// setup retriever
+
+const retriever = vectorStore.asRetriever({
+    k: 2,
+});
+
+const retrievalChain = await createRetrievalChain({
+    combineDocsChain : chain,
+    retriever: retriever
+})
+
 // to answer model questions from the website
 
-const response = await chain.invoke({
+const response = await retrievalChain.invoke({
     input : "What is LCEL?",
-    context : split_docs
 });
 
 console.log(response);
