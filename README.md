@@ -9,7 +9,8 @@
     npm i dotenv
     npm i nodemon --save-dev
     npm i zod ( need to install this for using StructuredOutputParser to have custom nested json structure response)
-
+    npm i @langchain/community
+    npm i cheerio
 
 ## Modify Package.json
 
@@ -61,4 +62,3 @@
 
     retrieval-chain.js
 
-    
